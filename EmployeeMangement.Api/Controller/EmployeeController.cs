@@ -123,13 +123,46 @@ namespace EmployeeMangement.Api.Controller
 
         public async Task<ActionResult<Employee>> DeleteEmployee(int id)
         {
-            var EmpToDelete = await _IEmployeeRepository.GetEmployee(id);
 
-            if(EmpToDelete == null)
+            try
             {
-                return BadRequest($"Id{id} Not Found");
+                var EmpToDelete = await _IEmployeeRepository.GetEmployee(id);
+
+                if (EmpToDelete == null)
+                {
+                    return BadRequest($"Id{id} Not Found");
+                }
+                return await _IEmployeeRepository.DeleteEmployee(EmpToDelete);
             }
-            return await _IEmployeeRepository.DeleteEmployee(EmpToDelete);
+
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Sorry our server isnt deleting your data !");
+            }
+            
+        }
+
+        [HttpGet("search")]
+
+        public async Task<ActionResult<IEnumerable<Employee>>> SearchEmployees(String name,Gender ? gender)
+        {
+            try
+            {
+                var result = await _IEmployeeRepository.SearchEmployees(name,gender);
+
+                if(result.Any())
+                {
+                    return Ok(result);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Sorry our server isnt responding !");
+            }
         }
     }
 }

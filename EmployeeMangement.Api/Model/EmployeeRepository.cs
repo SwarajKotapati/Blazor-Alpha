@@ -1,5 +1,6 @@
 ﻿using EmployeeDetails.Model;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace EmployeeMangement.Api.Model
 {
@@ -78,6 +79,24 @@ namespace EmployeeMangement.Api.Model
             }
 
             return null;
+        }
+
+        public async Task<IEnumerable<Employee>> SearchEmployees(string name, Gender? gender)
+        {
+            IQueryable<Employee> query = _appDbContext.Employees;
+
+            if (!string.IsNullOrEmpty(name))
+            {
+
+                query = query.Where(e => e.FirstName.Contains(name) || e.LastName.Contains(name));
+            }
+
+            if(gender != null)
+            {
+                query = query.Where(e => e.Gender == gender);
+            }
+
+            return await query.ToListAsync();
         }
     }
 }
