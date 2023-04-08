@@ -1,0 +1,43 @@
+﻿@page "/"
+@inherits EmployeeListBase
+
+
+@if(EmployeeList == null)
+{
+    
+    <div class="centerofpage">
+        <h2> Loading ...</h2>
+        <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+}
+
+else
+{
+
+    <h3 style="font-family = @headerFontFamily">Our Employees</h3>
+    <br />
+
+    <div class="card-deck">
+
+        @foreach (var Employee in EmployeeList)
+        {
+            <div class="card-header">
+                <h3>@Employee.FirstName  @Employee.LastName</h3>
+            </div>
+
+            <img class="card-img-top imageThumbnail" src="@Employee.PhotoPath" />
+
+
+            <div class="card-footer text-center">
+                <a href="#" class="btn btn-primary m-1">View</a>
+
+                <a href="#" class="btn btn-primary m-1">Edit</a>
+
+                <a href="#" class="btn btn-danger m-1">Delete</a>
+            </div>
+        }
+    </div>
+}
+
+
+
