@@ -118,5 +118,18 @@ namespace EmployeeMangement.Api.Controller
             }
 
         }
+
+        [HttpDelete("{id:int}")]
+
+        public async Task<ActionResult<Employee>> DeleteEmployee(int id)
+        {
+            var EmpToDelete = await _IEmployeeRepository.GetEmployee(id);
+
+            if(EmpToDelete == null)
+            {
+                return BadRequest($"Id{id} Not Found");
+            }
+            return await _IEmployeeRepository.DeleteEmployee(EmpToDelete);
+        }
     }
 }

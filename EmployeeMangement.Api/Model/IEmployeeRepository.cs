@@ -15,7 +15,7 @@ namespace EmployeeMangement.Api.Model
 
         Task <Employee> AddEmployee(Employee employee);
 
-        void DeleteEmployee(Employee employee);
+        Task <Employee> DeleteEmployee(Employee employee);
 
     }
 }
