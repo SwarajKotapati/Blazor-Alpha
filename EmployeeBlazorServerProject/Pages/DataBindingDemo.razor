@@ -1,0 +1,48 @@
+﻿@page "/DataBindingDemo";
+@inherits DataBindingDemoBase;
+
+<h2>@Name</h2>
+
+<div> 
+    @if(@Gender == "Male")
+    {
+        <div>
+            <h5>Mr. @Name</h5>
+        </div>
+        
+    }
+    else
+    {
+        <div>
+            <h5>Mrs. @Name</h5>
+        </div>
+    }
+</div>
+
+<br />
+<br />
+
+<h5>Below Input is one way data binding</h5>
+<input value="@Name" />
+
+<br/>
+<br/>
+<br/>
+
+<h5>Below Input is two way data binding. Not Dynamic</h5>
+<input @bind="@Name" />
+
+<br/>
+<br/>
+
+<h5>Below Input is two way data binding. Dynamic !</h5>
+<input @bind="@Name" @bind:event="oninput"/>
+
+<br />
+<br />
+<h5> Two way binding also works with css styling</h5>
+
+<input @bind="@Color" />
+<div @bind-style="Color" @bind-style:event="onchange">
+    <h3>The background colour of this text changes</h3>
+</div>
