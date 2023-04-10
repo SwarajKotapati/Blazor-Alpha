@@ -1,10 +1,13 @@
-﻿using EmployeeDetails.Model;
+﻿using EmployeeBlazorServerProject.Services;
+using EmployeeDetails.Model;
 using Microsoft.AspNetCore.Components;
 
 namespace EmployeeBlazorServerProject.Pages
 {
     public class EmployeeListBase : ComponentBase
     {
+        [Inject]
+        private IEmployeeService EmployeeService { get; set; }
 
         public IEnumerable<Employee> EmployeeList { get; set; }
 
@@ -12,8 +15,8 @@ namespace EmployeeBlazorServerProject.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            await Task.Run(PopulateEmployeeList);
-            //return base.OnInitializedAsync();
+            EmployeeList = (await EmployeeService.GetEmployees()).ToList();
+            //await Task.Run(PopulateEmployeeList);
         }
 
         public void PopulateEmployeeList()
