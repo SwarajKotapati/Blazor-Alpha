@@ -46,3 +46,16 @@
 <div @bind-style="Color" @bind-style:event="onchange">
     <h3>The background colour of this text changes</h3>
 </div>
+
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div>
+    <textarea @bind="@Description" @bind:event="oninput"> </textarea>
+    <p>Count : @Description.Length</p>
+</div>
