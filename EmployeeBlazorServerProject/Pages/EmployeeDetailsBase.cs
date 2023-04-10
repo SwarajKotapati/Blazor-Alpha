@@ -24,28 +24,39 @@ namespace EmployeeBlazorServerProject.Pages
 
         protected string CordinatesButttonText { get; set; }
 
+        protected string CordinatesButtonClass { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             Employee = await _IemployeeService.GetEmployee(int.Parse(Id));
+            
+            
             CordinatesButttonText = "Show Cordinates";
             CordinatesClass = "hideDisplay";
+            CordinatesButtonClass = "btn btn-success";
+
         }
 
         protected void MouseCordinates(MouseEventArgs mouseEventArgs)
         {
-            Cordinates =  $" X = {mouseEventArgs.ClientX}  + Y = {mouseEventArgs.ClientY}";
+            Cordinates =  $" X = {mouseEventArgs.ClientX}  , Y = {mouseEventArgs.ClientY}";
         }
 
         protected void DisplayCordinates()
         {
+            //When displaying cordinates, we turn them off
             if(CordinatesClass == null)
             {
                 CordinatesClass = "hideDisplay";
+                CordinatesButttonText = "Show Cordinates";
+                CordinatesButtonClass = "btn btn-success";
+
             }
             else
             {
                 CordinatesClass = null;
                 CordinatesButttonText = "Hide Cordinates";
+                CordinatesButtonClass = "btn btn-dark";
             }
         }
     }
