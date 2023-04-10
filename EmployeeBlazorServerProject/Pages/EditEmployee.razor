@@ -1,0 +1,42 @@
+﻿@page "/EditEmployee/{id:int}"
+@inherits EditEmplyoeeBase;
+
+<EditForm Model="@Employee">
+
+    <h2> Edit Employee </h2>
+    <hr/>
+
+    <div class="form-group row">
+        <label for="firstName" class="col-sm-2 col-form-label">
+            First Name
+        </label>
+        <div class="col-sm-10">
+            <InputText id="firstName" class="form-control" placeholder="First Name"
+                       @bind-Value="Employee.FirstName" />
+        </div>
+    </div>
+    <br/>
+
+    <div class="form-group row">
+        <label for="firstName" class="col-sm-2 col-form-label">
+            Last Name
+        </label>
+        <div class="col-sm-10">
+            <InputText id="firstName" class="form-control" placeholder="First Name"
+                       @bind-Value="Employee.LastName" />
+        </div>
+    </div>
+    <br />
+
+    <div class="form-group row">
+        <label for="firstName" class="col-sm-2 col-form-label">
+            Email
+        </label>
+        <div class="col-sm-10">
+            <InputText id="firstName" class="form-control" placeholder="First Name"
+                       @bind-Value="Employee.Email" />
+        </div>
+    </div>
+    <br />
+
+</EditForm>
