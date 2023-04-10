@@ -15,10 +15,24 @@ namespace EmployeeBlazorServerProject.Pages
 
         public bool ShowOptions { get; set; } = true;
 
+        protected int SelectedProfiles { get; set; } = 0;
+
         protected override async Task OnInitializedAsync()
         {
             EmployeeList = (await EmployeeService.GetEmployees()).ToList();
             //await Task.Run(PopulateEmployeeList);
+        }
+
+        public void IncrementCount(bool b)
+        {
+            if (b)
+            {
+                SelectedProfiles++;
+            }
+            else
+            {
+                SelectedProfiles--;
+            }
         }
 
         public void PopulateEmployeeList()

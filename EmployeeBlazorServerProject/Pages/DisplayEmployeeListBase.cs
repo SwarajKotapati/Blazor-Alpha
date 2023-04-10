@@ -6,9 +6,23 @@ namespace EmployeeBlazorServerProject.Pages
     public class DisplayEmployeeListBase : ComponentBase
     {
         [Parameter]
-        public Employee Employee {get;set;}
+        public Employee Employee { get; set; }
 
         [Parameter]
         public bool ShowOptions { get; set; } = true;
+
+        [Parameter]
+        public EventCallback<bool> EventCallback { get; set; }
+
+        public bool IsChecked {get; set; }
+        
+        public async Task CheckBoxChanged(ChangeEventArgs e)
+        {
+            IsChecked = (bool)e.Value;
+            await EventCallback.InvokeAsync(IsChecked);
+        }
+
+
+
     }
 }

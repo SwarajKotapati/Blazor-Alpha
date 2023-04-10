@@ -17,6 +17,7 @@ else
     <div style="float:right;">
         <input type="checkbox" id="ShowOptions" @bind="ShowOptions"></input>
         <lablel for="ShowOptions"> Enable Options</lablel>
+        <p>Employees Selected : @SelectedProfiles</p>
     </div>
     
     <br/>
@@ -26,7 +27,11 @@ else
 
         @foreach (var Employee in EmployeeList)
         {
-            <DisplayEmployeeList Employee="Employee" ShowOptions="@ShowOptions"></DisplayEmployeeList>
+            <DisplayEmployeeList 
+                Employee="Employee" 
+                ShowOptions="@ShowOptions"
+                EventCallback="IncrementCount">
+            </DisplayEmployeeList>
         }
     </div>
 }
