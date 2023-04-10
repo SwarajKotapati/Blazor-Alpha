@@ -4,27 +4,37 @@
 <h3 style="font-family : @FontFamily">Employee Details</h3>
 <br />
 
-<div class="row justify-content-center m-3">
-    <div class="col-sm-8">
-        <div class="card">
-            <div class="card-header justify-content-center">
-                <h1>@Employee.FirstName @Employee.LastName</h1>
-            </div>
 
-            <div class="card-body text-center">
-                <img class="card-img-top" src="@Employee.PhotoPath" />
-                <br/>
-                <br/>
+@if(Employee == null || Employee.Department == null){
+    <div class="spinner"></div>
+}
 
-                <h4>Employee ID : @Employee.EmployeeId</h4>
-                <h4>Email : @Employee.Email</h4>
-                <h4>Department : @Employee.DepartmentId</h4>
-            </div>
-            <div class="card-footer text-center">
-                <a href="/" class="btn btn-primary">Back</a>
-                <a href="#" class="btn btn-primary">Edit</a>
-                <a href="#" class="btn btn-danger">Delete</a>
+else
+{
+    <div class="row justify-content-center m-3">
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-header justify-content-center">
+                    <h1>@Employee.FirstName @Employee.LastName</h1>
+                </div>
+
+                <div class="card-body text-center">
+                    <img class="card-img-top" src="@Employee.PhotoPath" />
+                    <br />
+                    <br />
+
+                    <h4>Employee ID : @Employee.EmployeeId</h4>
+                    <h4>Email : @Employee.Email</h4>
+                    <h4>Department : @if (Employee.Department == null) { <h5> N/A </h5>} 
+                                     else {@Employee.Department.DepartmentName}
+                    </h4>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="/" class="btn btn-primary">Back</a>
+                    <a href="#" class="btn btn-primary">Edit</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+}

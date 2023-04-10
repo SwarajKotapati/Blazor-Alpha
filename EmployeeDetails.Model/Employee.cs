@@ -26,6 +26,8 @@ namespace EmployeeDetails.Model
 
         public string PhotoPath { get; set; }   
 
+        public Department Department { get; set; }
+
 
     }
 }
