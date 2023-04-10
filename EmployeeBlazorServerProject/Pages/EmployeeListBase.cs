@@ -13,6 +13,8 @@ namespace EmployeeBlazorServerProject.Pages
 
         protected string headerFontFamily = "Ariel";
 
+        public bool ShowOptions { get; set; } = true;
+
         protected override async Task OnInitializedAsync()
         {
             EmployeeList = (await EmployeeService.GetEmployees()).ToList();

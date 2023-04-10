@@ -9,28 +9,24 @@
 
 else
 {
+    <div style="text-align :center">
+        <h3 style="font-family = @headerFontFamily">Our Employees</h3>
+    </div>
+    
 
-    <h3 style="font-family = @headerFontFamily">Our Employees</h3>
-    <br />
+    <div style="float:right;">
+        <input type="checkbox" id="ShowOptions" @bind="ShowOptions"></input>
+        <lablel for="ShowOptions"> Enable Options</lablel>
+    </div>
+    
+    <br/>
+    <br/>
 
     <div class="card-deck">
 
         @foreach (var Employee in EmployeeList)
         {
-            <div class="card-header">
-                <h3>@Employee.FirstName  @Employee.LastName</h3>
-            </div>
-
-            <img class="card-img-top imageThumbnail" src="@Employee.PhotoPath" />
-
-
-            <div class="card-footer text-center">
-                <a href="/EmployeeDetails/@Employee.EmployeeId" class="btn btn-primary m-1">View</a>
-
-                <a href="#" class="btn btn-primary m-1">Edit</a>
-
-                <a href="#" class="btn btn-danger m-1">Delete</a>
-            </div>
+            <DisplayEmployeeList Employee="Employee" ShowOptions="@ShowOptions"></DisplayEmployeeList>
         }
     </div>
 }
