@@ -229,3 +229,7 @@ lds-roller {
         -webkit-transform: scale(1.0);
     }
 }
+
+.hideDisplay{
+    display : none;
+}
