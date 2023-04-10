@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Security.Cryptography.X509Certificates;
 
 namespace EmployeeBlazorServerProject.Services
 {
@@ -24,8 +25,12 @@ namespace EmployeeBlazorServerProject.Services
             {
                 return null;
             }
-            
 
+        }
+
+        public async Task<Employee> GetEmployee(int id)
+        {
+            return await _httpClient.GetFromJsonAsync<Employee>($"/api/Employee/{id}");
         }
     }
 }
