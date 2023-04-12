@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EmployeeDetails.Model.Custom_Validators;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace EmployeeDetails.Model
         public string LastName { get; set; }
 
         [EmailAddress]
+        [CustomEmailValidator(AttributeText ="gmail.com")]
         public string Email { get; set; }
 
         public DateTime DateOfBirth { get; set; }
