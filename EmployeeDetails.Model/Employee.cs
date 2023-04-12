@@ -14,8 +14,11 @@ namespace EmployeeDetails.Model
         [Required]
         [MinLength(4)]
         public string FirstName { get; set; }
-        public string LastName { get; set; }   
 
+        [Required]
+        public string LastName { get; set; }
+
+        [EmailAddress]
         public string Email { get; set; }
 
         public DateTime DateOfBirth { get; set; }
