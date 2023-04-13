@@ -5,7 +5,7 @@
 <EditForm Model="@editEmployee"  OnValidSubmit="SaveForm">
     <ObjectGraphDataAnnotationsValidator/>
 
-    <h2> Edit Employee </h2>
+    <h2> @PageHeader </h2>
     <hr/>
     <br/>
 
@@ -107,6 +107,6 @@
     <br />*@
 
     <br />
-    <button type="submit" class="btn btn-success">Submit Form</button>
+    <button type="submit" class="btn btn-success">@FormSubmitText</button>
 
 </EditForm>

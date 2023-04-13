@@ -32,11 +32,17 @@ namespace EmployeeBlazorServerProject.Pages
 
         public List<Department> departments { get; set; } = new List<Department>();
 
+        protected string PageHeader { get; set; }
+
+        protected string FormSubmitText { get; set; }
+
         protected async override Task OnInitializedAsync()
         {
             // If there is an number in the URI it means that it is a PUT request (Edit form)
             if(Id != 0)
             {
+                PageHeader = "Edit Employee";
+                FormSubmitText = "Save Changes";
                 Employee = await EmployeeService.GetEmployee(Id);
             }
             else
@@ -52,6 +58,9 @@ namespace EmployeeBlazorServerProject.Pages
                     Department = new Department(),
        
                 };
+
+                PageHeader = "Create Employee";
+                FormSubmitText = "Create Record";
             }
 
             // Even tho its POST/PUT  we want our automapper as we are using the Edit Employee data type in razor componenet
