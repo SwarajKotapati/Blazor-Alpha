@@ -32,5 +32,10 @@ namespace EmployeeBlazorServerProject.Services
         {
             return await _httpClient.GetFromJsonAsync<Employee>($"/api/Employee/{id}");
         }
+
+        public async Task UpdateEmployee(Employee UpdatedEmployee)
+        {
+            await _httpClient.PutAsJsonAsync<Employee>("/api/Employee", UpdatedEmployee);
+        }
     }
 }

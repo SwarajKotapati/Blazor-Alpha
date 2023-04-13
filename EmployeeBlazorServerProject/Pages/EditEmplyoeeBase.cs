@@ -22,6 +22,10 @@ namespace EmployeeBlazorServerProject.Pages
 
         public IMapper EmployeeAutoMapper { get; set; }
 
+        [Inject]
+
+        public NavigationManager NavigationManager { get; set; }
+
         private Employee Employee { get; set; } = new Employee();
 
         public EditEmplyoeeModel editEmployee { get; set; } = new EditEmplyoeeModel();
@@ -43,7 +47,14 @@ namespace EmployeeBlazorServerProject.Pages
 
         public void SaveForm()
         {
+            EmployeeAutoMapper.Map(editEmployee, Employee);
 
+            var result = EmployeeService.UpdateEmployee(Employee);
+
+            if(result != null)
+            {
+                NavigationManager.NavigateTo("/");
+            }
         }
     }
 }

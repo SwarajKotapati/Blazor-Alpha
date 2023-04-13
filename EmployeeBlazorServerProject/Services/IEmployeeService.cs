@@ -7,5 +7,7 @@ namespace EmployeeBlazorServerProject.Services
         Task<IEnumerable<Employee>> GetEmployees();
 
         Task<Employee> GetEmployee(int id);
+
+        Task UpdateEmployee(Employee UpdatedEmployee);
     }
 }

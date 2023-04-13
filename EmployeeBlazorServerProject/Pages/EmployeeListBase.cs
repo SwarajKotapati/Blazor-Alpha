@@ -19,6 +19,7 @@ namespace EmployeeBlazorServerProject.Pages
 
         protected override async Task OnInitializedAsync()
         {
+            System.Threading.Thread.Sleep(2000);
             EmployeeList = (await EmployeeService.GetEmployees()).ToList();
             //await Task.Run(PopulateEmployeeList);
         }
