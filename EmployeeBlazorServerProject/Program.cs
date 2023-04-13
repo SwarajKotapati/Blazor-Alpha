@@ -1,3 +1,4 @@
+using EmployeeBlazorServerProject.Models;
 using EmployeeBlazorServerProject.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -17,6 +18,8 @@ builder.Services.AddHttpClient<IDepartmentService, DepartmentService>(client =>
 {
     client.BaseAddress = new Uri("https://localhost:7263/");
 });
+
+builder.Services.AddAutoMapper(typeof(EmployeeMapper));
 
 var app = builder.Build();
 

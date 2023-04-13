@@ -1,4 +1,5 @@
-﻿using EmployeeBlazorServerProject.Models;
+﻿using AutoMapper;
+using EmployeeBlazorServerProject.Models;
 using EmployeeBlazorServerProject.Services;
 using EmployeeDetails.Model;
 using Microsoft.AspNetCore.Components;
@@ -15,7 +16,11 @@ namespace EmployeeBlazorServerProject.Pages
 
         [Inject]
 
-        public IDepartmentService DepartmentService { get; set; }   
+        public IDepartmentService DepartmentService { get; set; }
+
+        [Inject]
+
+        public IMapper EmployeeAutoMapper { get; set; }
 
         private Employee Employee { get; set; } = new Employee();
 
@@ -33,16 +38,7 @@ namespace EmployeeBlazorServerProject.Pages
 
         private void populateEditEmployee()
         {
-            editEmployee.EmployeeId = Employee.EmployeeId;
-            editEmployee.FirstName = Employee.FirstName;
-            editEmployee.LastName = Employee.LastName;
-            editEmployee.Email  = Employee.Email;
-            editEmployee.ConfirmEmail = Employee.Email;
-            editEmployee.DateOfBirth = Employee.DateOfBirth;
-            editEmployee.Gender = Employee.Gender;
-            editEmployee.PhotoPath = Employee.PhotoPath;
-            editEmployee.DepartmentId = Employee.DepartmentId;
-            editEmployee.Department = Employee.Department;
+            EmployeeAutoMapper.Map(Employee, editEmployee);
         }
 
         public void SaveForm()
