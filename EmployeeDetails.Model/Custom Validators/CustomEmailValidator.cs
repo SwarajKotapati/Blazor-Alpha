@@ -12,28 +12,37 @@ namespace EmployeeDetails.Model.Custom_Validators
         public string AttributeText { get; set; }
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
-            if (value.ToString().Length != 0)
+
+            if (value != null)
             {
-
-                String[] str = value.ToString().Split('@');
-                int len = str.Length;
-
-                if (str[len-1] != null && str[len-1].ToLower() == "gmail.com")
+                if (value.ToString().Length != 0)
                 {
-                    return null;
+
+                    String[] str = value.ToString().Split('@');
+                    int len = str.Length;
+
+                    if (str[len - 1] != null && str[len - 1].ToLower() == "gmail.com")
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        return new ValidationResult($"Domain must be gmail.com",
+                               new[] { validationContext.MemberName });
+                    }
                 }
+
                 else
                 {
                     return new ValidationResult($"Domain must be gmail.com",
                            new[] { validationContext.MemberName });
                 }
             }
-
             else
             {
-                return new ValidationResult($"Domain must be gmail.com",
-                       new[] { validationContext.MemberName });
+                return null;
             }
+            
         }
     }
 }

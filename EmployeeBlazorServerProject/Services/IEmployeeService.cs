@@ -9,5 +9,7 @@ namespace EmployeeBlazorServerProject.Services
         Task<Employee> GetEmployee(int id);
 
         Task UpdateEmployee(Employee UpdatedEmployee);
+
+        Task CreateEmployee(Employee NewEmployee);
     }
 }

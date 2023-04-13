@@ -34,9 +34,28 @@ namespace EmployeeBlazorServerProject.Pages
 
         protected async override Task OnInitializedAsync()
         {
-            Employee = await EmployeeService.GetEmployee(Id);
-            departments = (await DepartmentService.GetDepartments()).ToList();
+            // If there is an number in the URI it means that it is a PUT request (Edit form)
+            if(Id != 0)
+            {
+                Employee = await EmployeeService.GetEmployee(Id);
+            }
+            else
+            {
+                // If there is no ID then its a POST req ie new employee
+                // Setting up default values when the form is displayed
 
+                Employee = new Employee
+                {
+                    DepartmentId = 1,
+                    DateOfBirth = DateTime.Now,
+                    PhotoPath = "Images/Default.jpg",
+                    Department = new Department(),
+       
+                };
+            }
+
+            // Even tho its POST/PUT  we want our automapper as we are using the Edit Employee data type in razor componenet
+            departments = (await DepartmentService.GetDepartments()).ToList();
             populateEditEmployee();
         }
 
@@ -49,12 +68,23 @@ namespace EmployeeBlazorServerProject.Pages
         {
             EmployeeAutoMapper.Map(editEmployee, Employee);
 
-            var result = EmployeeService.UpdateEmployee(Employee);
+            // Edit employee request (PUT)
 
-            if(result != null)
+            int result = 0;
+
+            if(Id != 0)
             {
+                EmployeeService.UpdateEmployee(Employee);
                 NavigationManager.NavigateTo("/");
+
             }
+            else
+            {
+                var response = EmployeeService.CreateEmployee(Employee);
+                NavigationManager.NavigateTo("/");
+
+            }
+
         }
     }
 }

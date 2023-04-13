@@ -31,7 +31,6 @@ namespace EmployeeBlazorServerProject.Models
 
         public string PhotoPath { get; set; }
 
-        [ValidateComplexType]
         public Department Department { get; set; } = new Department();
     }
 }
