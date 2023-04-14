@@ -59,7 +59,7 @@ namespace EmployeeMangement.Api.Controller
 
         [HttpPost]
 
-        public async Task<ActionResult<Employee>> AddEmployee(Employee employee)
+        public async Task<ActionResult> AddEmployee(Employee employee)
         {
             try
             {

@@ -53,5 +53,27 @@ namespace EmployeeMangement.Api.Controller
                 return StatusCode(StatusCodes.Status500InternalServerError, "Sorry our server isn't responding");
             }
         }
+
+        [HttpDelete("{id:int}")]
+
+        public async Task<ActionResult<Department>> DeleteDepartmentById(int id)
+        {
+            try
+            {
+                var result = await _IDepartmentRepository.DeleteDepartmentById(id);
+
+                if(result != null )
+                {
+                    return result;
+                }
+
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Sorry our server isn't deleting");
+
+            }
+        }
     }
 }

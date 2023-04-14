@@ -10,6 +10,6 @@ namespace EmployeeBlazorServerProject.Services
 
         Task UpdateEmployee(Employee UpdatedEmployee);
 
-        Task CreateEmployee(Employee NewEmployee);
+        Task AddEmployee(Employee NewEmployee);
     }
 }

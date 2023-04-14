@@ -9,5 +9,7 @@ namespace EmployeeMangement.Api.Model
 
         Task<Department> GetDepartmentById(int id);
 
+        Task<Department> DeleteDepartmentById(int id);
+
     }
 }

@@ -31,6 +31,6 @@ namespace EmployeeBlazorServerProject.Models
 
         public string PhotoPath { get; set; }
 
-        public Department Department { get; set; } = new Department();
+        public Department Department { get; set; }
     }
 }

@@ -11,6 +11,11 @@ namespace EmployeeBlazorServerProject.Services
             _httpClient = httpClient;
         }
 
+        public async Task<Department> DeleteDepartmentById(int id)
+        {
+            return await _httpClient.DeleteFromJsonAsync<Department>($"/api/Department/{id}");
+        }
+
         public async Task<Department> GetDepartmentById(int id)
         {
             return await _httpClient.GetFromJsonAsync<Department>($"/api/Department/{id}");

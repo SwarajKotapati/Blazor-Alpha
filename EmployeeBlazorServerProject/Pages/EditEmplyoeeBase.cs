@@ -50,12 +50,15 @@ namespace EmployeeBlazorServerProject.Pages
                 // If there is no ID then its a POST req ie new employee
                 // Setting up default values when the form is displayed
 
-                Employee = new Employee
+                Employee = new Employee()
                 {
                     DepartmentId = 1,
                     DateOfBirth = DateTime.Now,
                     PhotoPath = "Images/Default.jpg",
-                    Department = new Department(),
+                    Department = new Department()
+                    {
+                        DepartmentName = "HR"
+                    },
        
                 };
 
@@ -73,23 +76,22 @@ namespace EmployeeBlazorServerProject.Pages
             EmployeeAutoMapper.Map(Employee, editEmployee);
         }
 
-        public void SaveForm()
+        public async Task SaveForm()
         {
             EmployeeAutoMapper.Map(editEmployee, Employee);
 
             // Edit employee request (PUT)
 
-            int result = 0;
 
-            if(Id != 0)
+            if (Id != 0)
             {
-                EmployeeService.UpdateEmployee(Employee);
+                await EmployeeService.UpdateEmployee(Employee);
                 NavigationManager.NavigateTo("/");
 
             }
             else
             {
-                var response = EmployeeService.CreateEmployee(Employee);
+                await EmployeeService.AddEmployee(Employee);
                 NavigationManager.NavigateTo("/");
 
             }
