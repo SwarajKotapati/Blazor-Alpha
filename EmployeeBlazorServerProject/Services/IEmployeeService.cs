@@ -11,5 +11,7 @@ namespace EmployeeBlazorServerProject.Services
         Task UpdateEmployee(Employee UpdatedEmployee);
 
         Task AddEmployee(Employee NewEmployee);
+
+        Task DeleteEmployee(int id);
     }
 }

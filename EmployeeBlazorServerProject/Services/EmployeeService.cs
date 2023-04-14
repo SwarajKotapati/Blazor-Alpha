@@ -49,5 +49,10 @@ namespace EmployeeBlazorServerProject.Services
 
 
         }
+
+        public async Task DeleteEmployee(int id)
+        {
+            await _httpClient.DeleteFromJsonAsync<Employee>($"/api/Employee/{id}");
+        }
     }
 }

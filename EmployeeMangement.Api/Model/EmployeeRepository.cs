@@ -37,12 +37,17 @@ namespace EmployeeMangement.Api.Model
 
         public async Task<Employee> GetEmployee(int id)
         {
+            var list = await _appDbContext.Employees.ToListAsync();
 
-            var result = await _appDbContext.Employees
-                .Include(e => e.Department)
-                .FirstOrDefaultAsync(e => e.EmployeeId == id);
+            foreach(Employee emp in list)
+            {
+                if(emp.EmployeeId == id)
+                {
+                    return emp;
+                }
+            }
 
-            return result;
+            return null;
         }
 
         public async Task<Employee> GetEmail(string email)
