@@ -36,6 +36,12 @@ namespace EmployeeBlazorServerProject.Pages
             }
         }
 
+        public async Task RefreshEmployees(bool b)
+        {
+            System.Threading.Thread.Sleep(2000);
+            EmployeeList = (await EmployeeService.GetEmployees()).ToList();
+        }
+
         public void PopulateEmployeeList()
         {
 

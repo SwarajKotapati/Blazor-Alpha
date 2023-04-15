@@ -30,7 +30,8 @@ else
             <DisplayEmployeeList 
                 Employee="Employee" 
                 ShowOptions="@ShowOptions"
-                EventCallback="IncrementCount">
+                EventCallback="IncrementCount"
+                DeleteEventCallback="RefreshEmployees">
             </DisplayEmployeeList>
         }
     </div>
