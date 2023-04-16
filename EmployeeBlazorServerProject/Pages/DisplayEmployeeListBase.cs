@@ -26,6 +26,8 @@ namespace EmployeeBlazorServerProject.Pages
 
         protected NavigationManager NavigationManager { get; set; }
 
+        protected RazorClassLibrary1.ShowConfirmationBase ShowConfirmationModal {get; set;}
+
         public bool IsChecked {get; set; }
         
         public async Task CheckBoxChanged(ChangeEventArgs e)
@@ -34,6 +36,22 @@ namespace EmployeeBlazorServerProject.Pages
             await EventCallback.InvokeAsync(IsChecked);
         }
 
+        public void DeleteClick()
+        {
+            ShowConfirmationModal.ShowConfirmationModal();
+        }
+
+        public async Task OnButtonClikedEvent(bool b)
+        {
+            if (b)
+            {
+                await DeleteEmployee();
+            }
+            else
+            {
+
+            }
+        }
         public async Task DeleteEmployee()
         {
             await EmployeeService.DeleteEmployee(Employee.EmployeeId);

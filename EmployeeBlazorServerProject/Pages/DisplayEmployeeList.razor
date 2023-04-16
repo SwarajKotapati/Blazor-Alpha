@@ -1,4 +1,5 @@
 ﻿@inherits DisplayEmployeeListBase
+@using RazorClassLibrary1
 
 <div class="card-header">
     <input id="check" type="checkbox" @onchange="CheckBoxChanged" style="margin-right:10px;padding-bottom:10px"/>
@@ -13,7 +14,7 @@
 
         <a href="/EditEmployee/@Employee.EmployeeId" class="btn btn-primary">Edit</a>
 
-        <button @onclick="DeleteEmployee" class="btn btn-danger m-1">Delete</button>
+        <button @onclick="DeleteClick" class="btn btn-danger m-1">Delete</button>
     </div>
 }
 else{
@@ -21,3 +22,8 @@ else{
     <br/>
     <br/>
 }
+
+<ShowConfirmation @ref="ShowConfirmationModal"
+                  ButtonClickedEvent="OnButtonClikedEvent"
+                  ModalBody="@($"Do you want to delete {Employee.FirstName}")"></ShowConfirmation>
+
