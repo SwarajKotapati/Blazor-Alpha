@@ -1,0 +1,14 @@
+﻿<h3 style="@GrandChildStyle; @GrandChildBorder">GrandChildComponent : @GrandChildCounter</h3>
+
+@code {
+
+
+    [CascadingParameter(Name ="Style")]
+    public string GrandChildStyle { get; set; }
+
+    [CascadingParameter(Name ="Border")]
+    public string GrandChildBorder { get; set;}
+
+    [CascadingParameter(Name ="Count")]
+    public int GrandChildCounter { get; set; }
+    }
