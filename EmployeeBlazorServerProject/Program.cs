@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using EmployeeBlazorServerProject.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthentication("Identity.Application").AddCookie();
 var connectionString = builder.Configuration.GetConnectionString("EmployeeBlazorServerProjectContextConnection") ?? throw new InvalidOperationException("Connection string 'EmployeeBlazorServerProjectContextConnection' not found.");
 
 builder.Services.AddDbContext<EmployeeBlazorServerProjectContext>(options =>
@@ -46,6 +48,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
