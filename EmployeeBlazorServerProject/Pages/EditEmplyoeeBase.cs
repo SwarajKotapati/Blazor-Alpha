@@ -3,6 +3,8 @@ using EmployeeBlazorServerProject.Models;
 using EmployeeBlazorServerProject.Services;
 using EmployeeDetails.Model;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
+using System.Net;
 
 namespace EmployeeBlazorServerProject.Pages
 {
@@ -36,8 +38,19 @@ namespace EmployeeBlazorServerProject.Pages
 
         protected string FormSubmitText { get; set; }
 
+        [CascadingParameter]
+        public Task<AuthenticationState> AuthenticationStateTask { get; set; }   
+
         protected async override Task OnInitializedAsync()
         {
+
+            var authenticationState = await AuthenticationStateTask;
+
+            if (!authenticationState.User.Identity.IsAuthenticated)
+            {
+                string ReturnUrl = WebUtility.UrlEncode($"/EditEmployee/{Id}");
+                NavigationManager.NavigateTo($"/identity/account/login?returnUrl={ReturnUrl}");
+            }
             // If there is an number in the URI it means that it is a PUT request (Edit form)
             if(Id != 0)
             {
