@@ -9,8 +9,8 @@
     @{
         if (User.Identity?.IsAuthenticated ?? false)
         {
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                <button type="submit" class="nav-link btn btn-link text-dark">Click here to Logout</button>
+            <form id="LougoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nav-link btn btn-link text-dark">Logging out ...</button>
             </form>
         }
         else
@@ -19,3 +19,9 @@
         }
     }
 </header>
+
+<script>
+    (()=>{
+        document.getElementById('LougoutForm').submit();
+    })()
+</script>
